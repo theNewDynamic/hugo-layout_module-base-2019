@@ -1,0 +1,12 @@
+<header>
+  <div>
+    <a href="/" class="site-title"> 
+      {{.Site.Title}}
+    </a>
+    {{- partial "_global/menu.html" (dict "page" . "menu" "main") -}}
+  </div>
+
+  <section class="social md:flex items-center justify-around">
+    {{partial "_components/social-follow.html" .}}
+  </section>
+</header>

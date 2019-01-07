@@ -1,0 +1,15 @@
+{{ if (fileExists "./assets/output/fonts/fonts.css") -}}
+  {{ $fonts := resources.Get "output/fonts/fonts.css" | minify | fingerprint  }}
+    {{ with $fonts }}
+      <link rel="stylesheet" href="{{ .Permalink | relURL }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"> 
+    {{ $.Scratch.Set "fonts" . }}    
+  {{ end }}
+{{ end }}
+
+{{ if (fileExists "./assets/output/css/app.css") -}}
+  {{ $stylesheet := resources.Get "output/css/app.css" | minify | fingerprint }}
+  {{ with $stylesheet }}
+    <link rel="stylesheet" href="{{ .Permalink | relURL }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"> 
+    {{ $.Scratch.Set "stylesheet" . }}    
+  {{ end }}
+{{ end }}
