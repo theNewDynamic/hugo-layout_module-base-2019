@@ -1,7 +1,7 @@
 /*
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block  
-  Content-Security-Policy: default-src 'self'; require-sri-for script; require-sri-for style
+  Content-Security-Policy-report-only: default-src 'self'; require-sri-for script; require-sri-for style
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer-when-downgrade
 /*
