@@ -1,14 +1,15 @@
 {{/* 
-  Default Classes :
-  wrapperClass : tnd-Nav
-  itemClass : {wrapperClass}__item
-  linkClass : ""
-  activeClass: {itemClass}--active
-  subClass: {wrapperClass}__submenu
-  hasChildrenClass: {itemClass}--has-submenu
-
-  TODO: replace the 5 classes keys with one dict and test with reflect.IsMap/IsString (upcoming Hugo .54) if the parameter is a map of many classes or a string with just the wrapper class 
-  TODO: Introcude custom html tags nav>div>a vs nav>ul>li>a etc...
+  ### Default Classes
+  wrapperClass => tnd-Nav
+  itemClass => {wrapperClass}__item
+  linkClass => ""
+  activeClass => {itemClass}--active
+  subClass => {wrapperClass}__submenu
+  hasChildrenClass => {itemClass}--has-submenu
+  
+  ### TODOS
+  - Replace the 5 classes keys with one dict and test with reflect.IsMap/IsString (upcoming Hugo .54) if the parameter is a map of many classes or a string with just the wrapper class 
+  - Introduce user defined html tags nav>div>a vs nav>ul>li>a etc...
 */}}
 
 {{- $wrapperClass := "tnd-Nav" -}}
@@ -16,14 +17,16 @@
   {{- $wrapperClass =  . -}}
 {{- end -}}
 {{- $itemClass := printf "%s__item" $wrapperClass -}}
+
+{{- with .itemClass -}}
+  {{- $itemClass = . -}}
+{{- end -}}
+
 {{- $linkClass := "" }}
 {{- $subClass := printf "%s__submenu" $wrapperClass -}}
 {{- $activeClass := printf "%s--active" $itemClass -}}
 {{- $hasChildrenClass := printf "%s--has-submenu" $itemClass -}}
 
-{{- with .itemClass -}}
-  {{- $itemClass = . -}}
-{{- end -}}
 {{- with .linkClass -}}
   {{- $linkClass = . -}}
 {{- end -}}
