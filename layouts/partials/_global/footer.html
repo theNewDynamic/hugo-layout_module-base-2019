@@ -1,6 +1,6 @@
 <footer role="contentinfo">  
   <div>
-    <a class="hover:text-white no-underline px-3 color-inherit" href="{{ .Site.BaseURL }}" >
+    <a class="hover:text-white no-underline color-inherit" href="{{ .Site.BaseURL }}" >
       &copy; {{ now.Format "2006" }} {{ .Site.Title }}
     </a>
     {{- partial "_global/menu.html" (dict "page" . "menu" "footer") -}}
