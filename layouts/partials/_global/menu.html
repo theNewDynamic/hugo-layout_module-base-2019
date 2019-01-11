@@ -33,6 +33,12 @@
 {{- with .activeClass -}}
   {{- $activeClass = . -}}
 {{- end -}}
+{{- with .hasChildrenClass -}}
+  {{- $hasChildrenClass = . -}}
+{{- end -}}
+{{- with .subClass -}}
+  {{- $subClass = . -}}
+{{- end -}}
 
 {{- $menu := index .page.Site.Menus (.menu) -}}
 
