@@ -1,34 +1,39 @@
-{{/* <!-- TODO: Add follow intents where available TODO: Revisit color and hover color --> */}}
-{{/* {{$size := printf "%s%s" .size}} */}}
-{{ $icon_size := .icon_size | default "24px"}}
+{{/* 
+Partial expect as context a map with either or both or none of the following arguments:
+icon_size > sring with size in css.
+socials > slice of string of service names to overwrite the default ones and their order.
+For new services, simply add their svg file in `partials/svg/{ service }.svg`
+ */}}
 
-{{ with .Site.Social.facebook }}
-  <a href="https://facebook.com/{{ . }}" class="facebook" title="Facebook no-underline">
-    {{ partial "svg/facebook.svg" (dict "size" $icon_size) }}
-  </a>
+{{/* Defaults: */}}
+{{ $icon_size := "24px" }}
+{{ with .icon_size }}
+  {{ $icon_size = string . }}
 {{ end }}
-{{ with .Site.Social.twitter }}
-  <a href="https://twitter.com/{{ . }}" class="twitter" title="Twitter no-underline">
-    {{ partial "svg/twitter.svg" (dict "size" $icon_size) }}
-  </a>
+{{ $socials := slice "facebook" "twitter" "instagram" }}
+{{ with .socials }}
+  {{ $socials = . }}
 {{ end }}
-{{ with .Site.Social.instagram }}
-  <a href="https://instagram.com/{{ . }}" class="instagram" title="Instagram no-underline">
-    {{ partial "svg/instagram.svg" (dict "size" $icon_size) }}
-  </a>
-{{ end }}
-{{ with .Site.Social.youtube }}
-  <a href="https://youtube.com/{{ . }}" class="youtube" title="Youtube no-underline">
-    {{ partial "svg/youtube.svg" (dict "size" $icon_size) }}
-  </a>
-{{ end }}
-{{ with .Site.Social.slack }}
-  <a href="{{ . }}" class="slack" title="Slack link">
-    {{ partialCached "svg/Slack_Mark_Monochrome_White_compressed.svg" (dict "size" $icon_size) }}
-  </a>
-{{ end }}
-{{ with .Site.Social.meetup }}
-  <a href="{{ . }}" class="meetup" title="Slack link">
-    {{ partialCached "svg/meetup.svg" (dict "size" $icon_size) }}
-  </a>
+
+{{/* If a service added later on uses a differnet pattern than https://{ service }.com, add to following: */}}
+{{ $social_urls := dict "some_service" "https://some_weird_url_for_this_service.com/" }}
+
+{{ range $socials }}
+  {{ $service := . }}
+  {{ with index site.Social $service }}
+    {{ $url := printf "https://%s.com/" $service }}
+    {{ with index $social_urls $service }}
+      {{ $url = . }}
+    {{ end }}
+    {{/* If site.Social.service value includes a protocole, we use its value as URL */}}
+    {{ if or (in . "https://") (in . "http://") }}
+      {{ $url = . }}
+    {{ else }}
+      {{ $url = printf "%s%s" $url . }}
+    {{ end }}
+    <a href="{{ $url }}" class="{{ $service }}" title="{{ $service }}" class="{{ $service }} no-underline">
+      {{ $svg_path := printf "svg/%s.svg" $service }}
+      {{ partial $svg_path (dict "size" $icon_size) }}
+    </a>
+  {{ end }}
 {{ end }}
