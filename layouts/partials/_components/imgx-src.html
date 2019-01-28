@@ -1,0 +1,24 @@
+{{/* 
+	Outputs an imgx formated URL with optional transformations.
+	
+	@author The New Dynamic
+	
+	@access public
+
+	@context dict .src [string] .query [string]
+		It is recommanded to build .query string `querify` to void format issues
+
+	@example - In Partial
+		{{- $query = querify "h" "800" "w" "800" "fit" "crop" -}}
+		<img src="{{ partial "_components/imgx-src" (dict "src" $img "query" $query) }}" alt="">
+*/}}
+{{- $src := .src -}}
+{{- $image_url := index site.Params "image_url" -}}
+{{- with $image_url -}}
+	{{- $src = replace $src "/uploads" . -}}
+{{- end -}}
+
+{{- with .query -}}
+	{{- $src = printf "%s?%s" $src . -}}
+{{- end -}}
+{{- $src -}}
