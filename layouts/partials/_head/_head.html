@@ -20,6 +20,9 @@
 {{ else }}
 	{{partial "_head/hugo-internal-templates.html" .}}
 {{ end }}
+{{if eq (getenv "HUGO_ENV") "production"}}
+  {{ template "_internal/google_analytics_async.html" . }}
+{{ end }}
 
 {{partial "_head/stylesheets.html" .}}
 {{partial "_head/manifest.html" .}}
