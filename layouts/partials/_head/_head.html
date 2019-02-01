@@ -15,8 +15,8 @@
   <link href="{{.RSSLink}}" rel="feed" type="application/rss+xml" title="{{.Site.Title}}" />
 {{end}}
 
-{{ if templates.Exists "partials/tnd-seo/tags.html" }}
-	{{ partial "tnd-seo/tags" . }}
+{{ if templates.Exists "partials/tnd-seo/print.html" }}
+	{{ partial "tnd-seo/print" . }}
 {{ else }}
 	{{partial "_head/hugo-internal-templates.html" .}}
 {{ end }}
