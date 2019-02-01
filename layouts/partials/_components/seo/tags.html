@@ -61,17 +61,21 @@
 	{{- $.Scratch.SetInMap "seo" "site_name" .Site.Title -}}
 {{- end -}}
 
+{{/* Twitter
+	---------------------------- */}}
+{{/* TODO: Maybe it should be default? */}}
 {{- $.Scratch.SetInMap "seo" "twitter_card" "summary_large_image" -}}
+
 {{- with .Site.Social.twitter -}}
 	{{- $.Scratch.SetInMap "seo" "twitter_handle" (printf "@%s" .) -}}
 {{- end -}}
+
+{{/* Image
+	---------------------------- */}}
 {{- with .Site.Params.default_image -}}
 	{{- $.Scratch.SetInMap "seo" "image" (. | absURL) -}}
 {{- end -}}
 
-
-{{/* Image
-	---------------------------- */}}
 {{- $img := "/uploads/default.jpg" -}}
 {{- with .Params.images -}}
 	{{- with index . 0 -}}
