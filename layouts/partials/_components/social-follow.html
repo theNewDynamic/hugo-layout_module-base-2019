@@ -10,7 +10,7 @@ For new services, simply add their svg file in `partials/svg/{ service }.svg`
 {{ with .icon_size }}
   {{ $icon_size = string . }}
 {{ end }}
-{{ $socials := slice "facebook" "twitter" "instagram" }}
+{{ $socials := slice "facebook" "twitter" "instagram" "meetup" "slack" }}
 {{ with .socials }}
   {{ $socials = . }}
 {{ end }}
