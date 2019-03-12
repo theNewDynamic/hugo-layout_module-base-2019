@@ -1,8 +1,4 @@
-<!-- scripts -->
-{{ if (fileExists "./assets/output/js/app.js") -}}
-  {{ $scripts := resources.Get "output/js/app.js" | fingerprint }}
-  {{ with $scripts }}    
-    <script type="text/javascript" src="{{ .Permalink | relURL }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
-    {{ $.Scratch.Set "scripts" $scripts }}    
-  {{ end }} 
-{{ end }} 
+{{ if (fileExists "./assets/output/index.js") }}
+  {{ $js := resources.Get "output/index.js" | resources.Fingerprint }}
+    <script type="text/javascript" src="{{ $js.Permalink | relURL }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{ end }}
