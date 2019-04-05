@@ -1,4 +1,4 @@
-{{/* 
+{{/*
 Partial expect as context a map with either or both or none of the following arguments:
 icon_size > sring with size in css.
 socials > slice of string of service names to overwrite the default ones and their order.
@@ -10,7 +10,7 @@ For new services, simply add their svg file in `partials/svg/{ service }.svg`
 {{ with .icon_size }}
   {{ $icon_size = string . }}
 {{ end }}
-{{ $socials := slice "facebook" "twitter" "instagram" "meetup" "slack" }}
+{{ $socials := slice "facebook" "twitter" "instagram" "linkedin" "meetup" "slack" }}
 {{ with .socials }}
   {{ $socials = . }}
 {{ end }}

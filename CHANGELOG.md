@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.2.1] - 2019-04-05 (@regisphilibert)
+
+- Update social follow to include linkedin
+
 ## [0.2.0] - 2019-02-15 (@regisphilibert)
 
 - Added _images/ partials (src and src--imgx)
