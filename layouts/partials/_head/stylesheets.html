@@ -1,10 +1,10 @@
-{{ if (fileExists "./assets/dist/index.css") }}  
-{{ $css := resources.Get "dist/index.css" | minify }}
+{{ $css := resources.Get "css/styles.css" | minify }}
 {{ with $css }}
-  {{ $securecss := . | resources.Fingerprint }}  
+  {{ $securecss := . | postCSS | minify | fingerprint }}  
   <link rel="stylesheet" href="{{ $securecss.Permalink | relURL  }}" integrity="{{ $securecss.Data.Integrity }}" crossorigin="anonymous"> 
 {{ end }}
     {{/* And, Parcel generates the files to the dist directory. Grab those files to create Prefetch links, and using Pipes, also puts them in our public folder */}}
+{{ if (fileExists "./assets/dist/index.css") }}      
   {{ $path := "./assets/dist" }}
   {{ $files := readDir $path }}
   {{ range $files }}
