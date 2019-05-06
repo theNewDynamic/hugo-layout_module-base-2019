@@ -58,6 +58,9 @@
   {{- if .page.HasMenuCurrent .menu .item -}}
     {{- $active = true -}}
   {{- end -}}
+  {{- if eq .page.RelPermalink .item.URL -}}
+    {{- $active = true -}}
+  {{- end -}}
   <div class="{{ $.itemClass }} {{ if $active }}{{ $.activeClass }}{{ end }} {{ if .item.HasChildren }}{{ $.hasChildrenClass }}{{ end }}">
     <a {{ with $.linkClass }}class="{{ . }}"{{ end }} href="{{ .item.URL }}" title="{{ .item.Name }}">{{ .item.Name }}</a>
     {{- with .item.Children -}}
