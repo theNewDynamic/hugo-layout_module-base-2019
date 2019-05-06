@@ -5,7 +5,7 @@
 
 */}}
 
-<time class="{{ with .classes }}{{ . | default "text-base block color-inherit font-sansf tracked" }}{{ end }}" datetime="{{ .context.Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<time class="{{ with .classes | default "text-base block color-inherit font-sans tracked" }}{{ . }}{{ end }}" datetime="{{ .context.Date.Format "2006-01-02T15:04:05Z07:00" }}">
   {{ if (or (eq .context.Params.show_time false) (eq .show_time false)) }}
     {{ .context.Date.Format "January 2, 2006" }}
   {{ else }}
