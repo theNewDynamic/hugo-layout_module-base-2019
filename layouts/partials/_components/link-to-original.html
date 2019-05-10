@@ -4,8 +4,8 @@
       {{- . -}}
       {{ else }}
     {{ replaceRE "^https?://([^/]+).*" "$1" . | safeHTMLAttr }}
-    {{ end }}
-    {{ partial "svg/link-external.svg" (dict "size" "12") }}
+    {{ end }}    
+    <span class="inline-block ml-1">{{ partial "svg/link-external.svg" (dict "size" "12") }}</span>
   </a>
   {{ else }}
     {{ with .Params.where_published }}
