@@ -1,4 +1,5 @@
-{{ if (fileExists "./assets/dist/index.js") }}
-  {{ $js := resources.Get "dist/index.js" | resources.Fingerprint }}
-    <script type="text/javascript" src="{{ $js.Permalink | relURL }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{ $assets := .Site.Data.assets }}  
+
+{{ with $assets.main }}
+	<script type="text/javascript" src="{{ with .js | default "/dist/main.js" }}{{ print . }}{{ end }}" {{ with .jsIntegrity }}integrity="{{ print . }}" crossorigin="anonymous"{{ end }} defer></script>
 {{ end }}
