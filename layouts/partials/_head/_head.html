@@ -4,7 +4,7 @@
 
 {{ hugo.Generator}}
 
-{{if eq (getenv "HUGO_ENV") "production"}}
+{{if and (eq (getenv "HUGO_ENV") "production") (ne .Params.private true)  }}
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 {{else}}
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
